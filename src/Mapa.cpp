@@ -2,16 +2,19 @@
 #include <iostream>
 
 Mapa::Mapa() {
+
+
     lab = {
         "###############",
-        "#M      #     #",
-        "# ####### ### #",
-        "#       #     #",
-        "# ### # ##### #",
-        "#   # #     # #",
-        "### # ####### #",
-        "#     #       #",
-        "# ### #######S#",
+        "#M     #      #",
+        "# ### ### ######",
+        "# #     #      #",
+        "# # ##### #### #",
+        "# #     #    # #",
+        "# ### # #### # #",
+        "#     #      # #",
+        "##### ######   #",
+        "#           ##S#",
         "###############"
     };
 
@@ -37,17 +40,21 @@ int Mapa::alto() {
 }
 
 void Mapa::dibujar(sf::RenderWindow& ventana) {
+
     sf::Sprite sprite;
 
     for (int y = 0; y < alto(); y++) {
         for (int x = 0; x < ancho(); x++) {
 
-            if (lab[y][x] == '#')
+            if (lab[y][x] == '#') {
                 sprite.setTexture(texPared);
-            else if (lab[y][x] == 'S')
+            }
+            else if (lab[y][x] == 'S') {
                 sprite.setTexture(texSalida);
-            else
+            }
+            else {
                 sprite.setTexture(texPiso);
+            }
 
             sprite.setPosition(x * 32, y * 32);
             ventana.draw(sprite);

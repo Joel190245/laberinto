@@ -6,6 +6,8 @@ Jugador::Jugador() {
 
     texJugador.loadFromFile("assets/jugador.png");
     sprite.setTexture(texJugador);
+
+    sprite.setScale(1,1);
 }
 
 void Jugador::dibujar(sf::RenderWindow& ventana) {
