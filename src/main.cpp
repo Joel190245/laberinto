@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Mapa.h"
 #include "Jugador.h"
-#include <iostream>
 
 int main() {
-    sf::RenderWindow ventana(sf::VideoMode(640, 480), "Juego del Laberinto");
-    ventana.setFramerateLimit(10); 
+
+    sf::RenderWindow ventana(sf::VideoMode(800, 600), "Laberinto - 3 Niveles");
+    ventana.setFramerateLimit(10);
 
     Mapa mapa;
     Jugador jugador;
@@ -18,16 +19,19 @@ int main() {
                 ventana.close();
         }
 
-        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) jugador.mover(0, -1, mapa);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) jugador.mover(0, 1, mapa);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) jugador.mover(-1, 0, mapa);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) jugador.mover(1, 0, mapa);
 
-        
         if (mapa.esSalida(jugador.x(), jugador.y())) {
-            std::cout << "¡Has llegado a la salida!" << std::endl;
-            ventana.close();
+            if (mapa.getNivel() < 3) {
+                mapa.cargarNivel(mapa.getNivel() + 1);
+                jugador.reiniciar();
+            } else {
+                std::cout << "¡Has completado los 3 niveles!" << std::endl;
+                ventana.close();
+            }
         }
 
         ventana.clear();

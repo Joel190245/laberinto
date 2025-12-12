@@ -13,11 +13,16 @@ public:
     bool esPared(int x, int y);
     bool esSalida(int x, int y);
 
+    void cargarNivel(int nivel);
+    int getNivel();
+
     int ancho();
     int alto();
 
 private:
+    int nivelActual;
     std::vector<std::string> lab;
+
     sf::Texture texPared;
     sf::Texture texPiso;
     sf::Texture texSalida;

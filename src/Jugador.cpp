@@ -6,8 +6,6 @@ Jugador::Jugador() {
 
     texJugador.loadFromFile("assets/jugador.png");
     sprite.setTexture(texJugador);
-
-    sprite.setScale(1,1);
 }
 
 void Jugador::dibujar(sf::RenderWindow& ventana) {
@@ -23,6 +21,11 @@ void Jugador::mover(int dx, int dy, Mapa& mapa) {
         posX = nx;
         posY = ny;
     }
+}
+
+void Jugador::reiniciar() {
+    posX = 1;
+    posY = 1;
 }
 
 int Jugador::x() { return posX; }

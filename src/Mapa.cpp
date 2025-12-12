@@ -1,26 +1,75 @@
 #include "Mapa.h"
-#include <iostream>
 
 Mapa::Mapa() {
+    nivelActual = 1;
+    cargarNivel(1);
+}
 
+void Mapa::cargarNivel(int nivel) {
+    nivelActual = nivel;
 
-    lab = {
-        "###############",
-        "#M     #      #",
-        "# ### ### ######",
-        "# #     #      #",
-        "# # ##### #### #",
-        "# #     #    # #",
-        "# ### # #### # #",
-        "#     #      # #",
-        "##### ######   #",
-        "#           ##S#",
-        "###############"
-    };
+    // ===== NIVEL 1 (FÁCIL) =====
+    if (nivel == 1) {
+        lab = {
+            "###############",
+            "#M     #      #",
+            "# ### ### #### #",
+            "# #     #      #",
+            "# # ##### #### #",
+            "# #     #    # #",
+            "# ### # #### # #",
+            "#     #      # #",
+            "##### ######   #",
+            "#           ##S#",
+            "###############"
+        };
 
-    texPared.loadFromFile("assets/pared.png");
-    texPiso.loadFromFile("assets/piso.png");
-    texSalida.loadFromFile("assets/salida.png");
+        texPared.loadFromFile("assets/nivel1/pared.png");
+        texPiso.loadFromFile("assets/nivel1/piso.png");
+        texSalida.loadFromFile("assets/nivel1/salida.png");
+    }
+
+    // ===== NIVEL 2 (MEDIO – CONECTA BIEN) =====
+    else if (nivel == 2) {
+        lab = {
+            "###################",
+            "#M        #     S#",
+            "# ####### # ##### #",
+            "#       # #       #",
+            "####### # ####### #",
+            "#       #         #",
+            "# ##### ######### #",
+            "#     #           #",
+            "# ### ########### #",
+            "#                 #",
+            "###################"
+        };
+
+        texPared.loadFromFile("assets/nivel2/pared.png");
+        texPiso.loadFromFile("assets/nivel2/piso.png");
+        texSalida.loadFromFile("assets/nivel2/salida.png");
+    }
+
+    // ===== NIVEL 3 (DIFÍCIL – CONECTA BIEN) =====
+    else if (nivel == 3) {
+        lab = {
+            "#####################",
+            "#M        #        #",
+            "# ####### # ###### #",
+            "#       # #      # #",
+            "####### # ####### # #",
+            "#       #       # # #",
+            "# ##### ######### # #",
+            "#     #           # #",
+            "# ### ########### # #",
+            "#   #             S #",
+            "#####################"
+        };
+
+        texPared.loadFromFile("assets/nivel3/pared.png");
+        texPiso.loadFromFile("assets/nivel3/piso.png");
+        texSalida.loadFromFile("assets/nivel3/salida.png");
+    }
 }
 
 bool Mapa::esPared(int x, int y) {
@@ -29,6 +78,10 @@ bool Mapa::esPared(int x, int y) {
 
 bool Mapa::esSalida(int x, int y) {
     return lab[y][x] == 'S';
+}
+
+int Mapa::getNivel() {
+    return nivelActual;
 }
 
 int Mapa::ancho() {
@@ -40,7 +93,6 @@ int Mapa::alto() {
 }
 
 void Mapa::dibujar(sf::RenderWindow& ventana) {
-
     sf::Sprite sprite;
 
     for (int y = 0; y < alto(); y++) {

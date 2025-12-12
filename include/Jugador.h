@@ -14,9 +14,12 @@ public:
     int x();
     int y();
 
+    void reiniciar();
+
 private:
     int posX;
     int posY;
+
     sf::Texture texJugador;
     sf::Sprite sprite;
 };
