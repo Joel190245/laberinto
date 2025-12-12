@@ -29,7 +29,7 @@ int main() {
                 mapa.cargarNivel(mapa.getNivel() + 1);
                 jugador.reiniciar();
             } else {
-                std::cout << "¡Has completado los 3 niveles!" << std::endl;
+                std::cout << "Has completado los 3 niveles Felicidades" << std::endl;
                 ventana.close();
             }
         }

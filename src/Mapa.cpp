@@ -8,7 +8,6 @@ Mapa::Mapa() {
 void Mapa::cargarNivel(int nivel) {
     nivelActual = nivel;
 
-    // ===== NIVEL 1 (FÁCIL) =====
     if (nivel == 1) {
         lab = {
             "###############",
@@ -29,7 +28,6 @@ void Mapa::cargarNivel(int nivel) {
         texSalida.loadFromFile("assets/nivel1/salida.png");
     }
 
-    // ===== NIVEL 2 (MEDIO – CONECTA BIEN) =====
     else if (nivel == 2) {
         lab = {
             "###################",
@@ -50,7 +48,6 @@ void Mapa::cargarNivel(int nivel) {
         texSalida.loadFromFile("assets/nivel2/salida.png");
     }
 
-    // ===== NIVEL 3 (DIFÍCIL – CONECTA BIEN) =====
     else if (nivel == 3) {
         lab = {
             "#####################",
