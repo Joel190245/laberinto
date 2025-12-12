@@ -26,7 +26,7 @@ Uso de diferentes temas visuales por nivel
 
 👥 Equipo
 Líder: Joel Antonio Orozco Villalobos (@Joel190245)
-Integrante 2: Denia Alejandra De Anda Escobar (@)
+Integrante 2: Denia Alejandra De Anda Escobar (@deniadeanda)
 
 🛠️ Tecnologías
 Framework: SFML
