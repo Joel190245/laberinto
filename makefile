@@ -1,26 +1,29 @@
+CXX = g++
+CXXFLAGS = -Iinclude -std=c++17
+LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+OBJ = bin/Jugador.o bin/Mapa.o bin/main.o
 TARGET = laberinto
 
-SRC_DIR = src
-INC_DIR = include
-BIN_DIR = bin
+all: $(TARGET)
 
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
+bin/Jugador.o: src/Jugador.cpp
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) -c src/Jugador.cpp -o bin/Jugador.o
 
-CXX = g++
-CXXFLAGS = -I$(INC_DIR) -std=c++17
+bin/Mapa.o: src/Mapa.cpp
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) -c src/Mapa.cpp -o bin/Mapa.o
 
-SFML = -lsfml-graphics -lsfml-window -lsfml-system
+bin/main.o: src/main.cpp
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) -c src/main.cpp -o bin/main.o
 
 $(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $(TARGET) $(SFML)
-
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
-	mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
 clean:
-	rm -rf $(BIN_DIR)/*.o $(TARGET)
-	
-run: $(TARGET)
+	rm -rf bin *.exe $(TARGET)
+
+run:
 	./$(TARGET)

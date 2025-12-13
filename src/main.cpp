@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "Mapa.h"
 #include "Jugador.h"
@@ -28,6 +29,23 @@ int main() {
     texto.setFont(fuente);
     texto.setCharacterSize(28);
     texto.setFillColor(sf::Color::White);
+
+    sf::Music musica;
+
+    auto reproducirMusica = [&](int nivel) {
+        musica.stop();
+
+        if (nivel == 1)
+            musica.openFromFile("assets/music/nivel1.ogg");
+        else if (nivel == 2)
+            musica.openFromFile("assets/music/nivel2.ogg");
+        else if (nivel == 3)
+            musica.openFromFile("assets/music/nivel3.ogg");
+
+        musica.setLoop(true);
+        musica.setVolume(50);
+        musica.play();
+    };
 
     Mapa mapa;
     Jugador jugador;
@@ -66,6 +84,7 @@ int main() {
             ventana.draw(texto);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+                reproducirMusica(1);
                 estado = MOSTRAR_NIVEL;
                 relojNivel.restart();
             }
@@ -96,6 +115,7 @@ int main() {
                 if (mapa.getNivel() < 3) {
                     mapa.cargarNivel(mapa.getNivel() + 1);
                     jugador.reiniciar();
+                    reproducirMusica(mapa.getNivel());
 
                     mapaAnchoPx = mapa.ancho() * tileSize;
                     mapaAltoPx  = mapa.alto() * tileSize;
@@ -106,6 +126,7 @@ int main() {
                     estado = MOSTRAR_NIVEL;
                     relojNivel.restart();
                 } else {
+                    musica.stop();
                     estado = GANASTE;
                 }
             }
